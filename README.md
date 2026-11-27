@@ -69,6 +69,20 @@ infra/                    Local development and deployment configuration
 This layout is a target structure; folders and services may be introduced
 incrementally as the project is implemented.
 
+## Private remote access
+
+The web app should be reachable from the owner's phone and PC over the internet
+without requiring a VPN, while remaining unavailable to unauthenticated users.
+A possible deployment is to run the app on a private host and use an outbound
+tunnel with an identity-aware access gateway (for example, Cloudflare Tunnel
+and Access). The tunnel and access provider are not yet selected.
+
+Require HTTPS and strong authentication, preferably with multi-factor
+authentication. Keep the database, message broker, and internal service
+endpoints off the public internet; only expose the protected web entry point.
+Store credentials and signing keys outside the repository, and do not expose
+broker secrets to the browser.
+
 ## Development
 
 The project is under active development and does not yet have a verified
